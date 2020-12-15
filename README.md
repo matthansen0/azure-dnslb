@@ -18,9 +18,9 @@ There are many usecases for having a load balanced set of DNS servers in Azure. 
 
 
 
-## Azure Powershell 
+## Azure Powershell/ Azure CLI 
 
-The Powershell for this deployment has not yet been completed, feel free to submit a PR!
+The Powershell and CLI for this deployment has not yet been completed, feel free to submit a PR!
 
 
 
