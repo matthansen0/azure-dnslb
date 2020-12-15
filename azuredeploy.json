@@ -249,7 +249,7 @@
       "autoUpgradeMinorVersion":true,
       "settings": {
         "fileUris": [
-          "https://raw.githubusercontent.com/matthansen0/dnslb/master/scripts/configureDNS.ps1"
+          "https://raw.githubusercontent.com/matthansen0/azure-dnslb/master/scripts/configureDNS.ps1"
         ],
         "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File configureDNS.ps1"
       }
