@@ -12,7 +12,7 @@ There are many usecases for having a load balanced set of DNS servers in Azure. 
 
 - The Azure Load Balancer is assigned a static IP in the Virtual Network and is configured to load balance UDP/TCP on port 53.
 
-![Visio Drawing](.\images/Azure-DNS-LB.png)
+![Visio Drawing](.\images\Azure-DNS-LB.png)
 
 [![Deploy To Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMattHansen0%2Fazure-dnslb%2Fmaster%2Fazuredeploy.json)  [![Visualize](http://armviz.io/visualizebutton.png)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FMattHansen0%2Fazure-dnslb%2Fmaster%2Fazuredeploy.json)
 
