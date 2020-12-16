@@ -48,6 +48,20 @@
       "metadata": {
         "description": "Location for all resources. Default is the location of the resource group."
       }
+    },
+    "vmSize": {
+      "type": "string",
+      "defaultValue": "Standard_DS1_V2",
+      "metadata": {
+        "description": "VM SKU Size"
+      }
+    },
+    "vmImageSKU": {
+      "type": "string",
+      "defaultValue": "2019-Datacenter-Core",
+      "metadata": {
+        "description": "VM Image SKU"
+      }
     }
   },
   "variables": {
@@ -222,7 +236,7 @@
           "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('availabilitySetName'))]"
         },
         "hardwareProfile": {
-          "vmSize": "Standard_DS2_V2"
+          "vmSize": "[parameters('vmSize')]"
         },
         "osProfile": {
           "computerName": "[concat(parameters('vmNamePrefix'), copyIndex())]",
@@ -233,7 +247,7 @@
           "imageReference": {
             "publisher": "MicrosoftWindowsServer",
             "offer": "WindowsServer",
-            "sku": "2016-Datacenter",
+            "sku": "[parameters('vmImageSKU')]",
             "version": "latest"
           },
           "osDisk": {
