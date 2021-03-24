@@ -4,9 +4,9 @@
 
 ## ARM Template
 
-There are many usecases for having a load balanced set of DNS servers in Azure. One of which is the primary route taken for Azure Private Link is to use IaaS DNS VMs and forward those request to an Azure Private DNS Zone. After deployment, these VMs can be configured in whichever patch management soltuion (Azure Update Management, for example) and put them on alternate reboot schedules to allow for a single IP address to continuously resolve DNS in your Azure Virtual Network. 
+There are many use cases for having a load balanced set of DNS servers in Azure. One of which is the primary route taken for Azure Private Link is to use IaaS DNS VMs and forward those request to an Azure Private DNS Zone. After deployment, these VMs can be configured in whichever patch management solution (Azure Update Management, for example) and put them on alternate reboot schedules to allow for a single IP address to continuously resolve DNS in your Azure Virtual Network.
 
-- This template will create two Virtual Machines behind an internal Load Balancer using TCP 53 as a health probe which listens by default on Windows DNS servers and is used for things like OPT records or DNSSEC when DNS requests are larger than 512 bytes. 
+- This template will create two Virtual Machines behind an internal Load Balancer using TCP 53 as a health probe which listens by default on Windows DNS servers and is used for things like OPT records or DNSSEC when DNS requests are larger than 512 bytes.
 
 - By default the script configures a the DNS servers to forward to the multicast Azure Name Resolution but you can modify the script as you see fit. This template also deploys a Storage Account, Virtual Network, Availability Set and Network Interfaces.
 
@@ -18,11 +18,11 @@ For a more detailed explaination, please see the corresponding blog post here: h
 
 [//]: # (The short URLs below are to show impact of this solution by tracking number of deployments. You can use the direct link if you wish - https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMattHansen0%2Flogicapp-githubstats%2Fmain%2Fazuredeploy.json)
 
-[![Deploy To Azure](http://azuredeploy.net/deploybutton.png)](https://urls.hansencloud.com/75d9a)  [![Visualize](http://armviz.io/visualizebutton.png)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FMattHansen0%2Fazure-dnslb%2Fmaster%2Fazuredeploy.json)
+[![Deploy To Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FMattHansen0%2Fazure-dnslb%2Fdev%2Fazuredeploy.json)  [![Visualize](http://armviz.io/visualizebutton.png)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FMattHansen0%2Fazure-dnslb%2Fdev%2Fazuredeploy.json)
 
 
 
-## Azure Powershell/ Azure CLI 
+## Azure Powershell/ Azure CLI
 
 The Powershell and CLI for this deployment has not yet been completed, feel free to submit a PR!
 

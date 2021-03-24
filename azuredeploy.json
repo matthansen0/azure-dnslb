@@ -21,25 +21,25 @@
         "description": "Prefix to use for VM names"
       }
     },
-    "vnetAddressPrefix": {
+    "virtualNetworkName": {
       "type": "string",
-      "defaultValue": "10.0.0.0/16",
+      "defaultValue": "",
       "metadata": {
-        "description": "Address space for vNet"
+        "description": "Name of vnet into which the solution will be deployed."
       }
     },
-    "subnetAddressPrefix": {
+    "subnetName": {
       "type": "string",
-      "defaultValue": "10.0.2.0/24",
+      "defaultValue": "",
       "metadata": {
-        "description": "backendSubnet address space"
+        "description": "Name of the subnet into which the solution will be deployed."
       }
     },
     "lbIP": {
       "type": "string",
       "defaultValue": "10.0.2.10",
       "metadata": {
-        "description": "Private IP address for load balancer"
+        "description": "Private IP address for load balancer, this will need to be compliant with the subnet address space."
       }
     },
     "location": {
@@ -62,6 +62,13 @@
       "metadata": {
         "description": "VM Image SKU"
       }
+    },
+    "vnetResourceGroup": {
+      "type": "string",
+      "defaultValue": "rg",
+      "metadata": {
+        "description": "Name of the resource group where the existing vnet is deployed."
+      }
     }
   },
   "variables": {
@@ -72,7 +79,8 @@
     "subnetName": "backendSubnet",
     "loadBalancerName": "ilb",
     "networkInterfaceName": "nic",
-    "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
+    "subnetRefOLD": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
+    "subnetRef": "[resourceId(parameters('vnetResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetName'))]",
     "numberOfInstances": 2,
     "lbID": "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]"
 
@@ -103,27 +111,6 @@
     },
     {
       "apiVersion": "2018-04-01",
-      "type": "Microsoft.Network/virtualNetworks",
-      "name": "[variables('virtualNetworkName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[parameters('vnetAddressPrefix')]"
-          ]
-        },
-        "subnets": [
-          {
-            "name": "[variables('subnetName')]",
-            "properties": {
-              "addressPrefix": "[parameters('subnetAddressPrefix')]"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "apiVersion": "2018-04-01",
       "type": "Microsoft.Network/networkInterfaces",
       "name": "[concat(variables('networkInterfaceName'), copyindex())]",
       "location": "[parameters('location')]",
@@ -132,7 +119,6 @@
         "count": "[variables('numberOfInstances')]"
       },
       "dependsOn": [
-        "[variables('virtualNetworkName')]",
         "[variables('loadBalancerName')]"
       ],
       "properties": {
@@ -160,7 +146,6 @@
       "name": "[variables('loadBalancerName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[variables('virtualNetworkName')]"
       ],
        "sku":
         {
@@ -284,7 +269,7 @@
       "autoUpgradeMinorVersion":true,
       "settings": {
         "fileUris": [
-          "https://raw.githubusercontent.com/matthansen0/azure-dnslb/master/scripts/configureDNS.ps1"
+          "https://raw.githubusercontent.com/matthansen0/azure-dnslb/dev/scripts/configureDNS.ps1"
         ],
         "commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted -File configureDNS.ps1"
       }
