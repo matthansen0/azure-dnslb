@@ -289,7 +289,7 @@
                 "autoUpgradeMinorVersion": true,
                 "settings": {
                     "fileUris": [
-                        "https://raw.githubusercontent.com/matthansen0/azure-dnslb/dev/scripts/configureDNS.sh"
+                        "https://raw.githubusercontent.com/matthansen0/azure-dnslb/main/scripts/configureDNS.sh"
                     ]
                 },
                 "protectedSettings": {
