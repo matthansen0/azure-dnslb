@@ -1,0 +1,10 @@
+options{
+        directory "/var/cache/bind";
+      	recursion yes;
+        allow-query { 0.0.0.0/0 };
+        forwarders {
+                168.63.129.16;
+         };
+	 forward only;
+
+}
