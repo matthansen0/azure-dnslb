@@ -67,13 +67,6 @@
         "metadata": {
           "description": "VM Image SKU"
         }
-      },
-      "authenticationType": {
-        "type": "string",
-        "defaultValue": "password",
-        "metadata": {
-          "description": "Type of authentication used for the virtual machine"
-        }
       }
     },
     "variables": {
@@ -86,18 +79,8 @@
       "networkInterfaceName": "nic",
       "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
       "numberOfInstances": 2,
-      "lbID": "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]",
-       "linuxConfiguration": {
-      "disablePasswordAuthentication": true,
-      "ssh": {
-        "publicKeys": [
-          {
-            "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
-            "keyData": "[parameters('adminPassword')]"
-          }
-        ]
-      }
-    }  
+      "lbID": "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancerName'))]"
+  
     },
     "resources": [
       {
@@ -264,7 +247,7 @@
             "computerName": "[concat(parameters('vmNamePrefix'), copyIndex())]",
             "adminUsername": "[parameters('adminUsername')]",
             "adminPassword": "[parameters('adminPassword')]",
-            "linuxConfiguration": "[if(equals(parameters('authenticationType'), 'password'), json('null'), variables('linuxConfiguration'))]"
+            "linuxConfiguration": "password"
           },
           "storageProfile": {
             "imageReference": {
