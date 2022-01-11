@@ -4,7 +4,7 @@ sudo apt upgrade -y
 sudo apt install bind9
 
 # Replace BIND config file
-wget https://raw.githubusercontent.com/matthansen0/azure-openemr/dev/scripts/named.conf.options
+wget https://raw.githubusercontent.com/matthansen0/azure-dnslb/dev/scripts/named.conf.options
 sudo cp /etc/bind/named.conf.options /etc/bind/named.conf.options.old
 sudo rm /etc/bind/named.conf.options
 sudo cp named.conf.options /etc/bind/named.conf.option
