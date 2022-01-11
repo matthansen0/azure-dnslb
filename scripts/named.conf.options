@@ -1,0 +1,11 @@
+// Last Updated: 01/11/2022
+// Author: Matt Hansen
+// Description: Basic installation of DNS server with forwarder set to Azure DNS resolver.
+
+options{
+        directory "/var/cache/bind";
+        allow-query { 0.0.0.0/0; };
+        forwarders { 168.63.129.16; };
+        dnssec-validation auto;
+	    forward only;
+};
