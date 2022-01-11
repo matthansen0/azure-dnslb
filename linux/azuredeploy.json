@@ -246,8 +246,7 @@
           "osProfile": {
             "computerName": "[concat(parameters('vmNamePrefix'), copyIndex())]",
             "adminUsername": "[parameters('adminUsername')]",
-            "adminPassword": "[parameters('adminPassword')]",
-            "linuxConfiguration": "password"
+            "adminPassword": "[parameters('adminPassword')]"
           },
           "storageProfile": {
             "imageReference": {
